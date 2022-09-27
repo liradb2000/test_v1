@@ -1,0 +1,60 @@
+{
+  "name": "@NEXIVIL/test-extension",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "liradb2000 <liradb2000@live.co.kr>",
+  "homepage": "https://github.com/Nexivil-Inc/Extensions#readme",
+  "license": "MIT",
+  "main": "build/main.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "build"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nexivil-Inc/Extensions.git"
+  },
+  "scripts": {
+    "build": "node-scripts build",
+    "pack": "node-scripts pack",
+    "start": "node-scripts start",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/Nexivil-Inc/Extensions/issues"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@design-express/node-scripts": "^1.0.0-alpha.906154300",
+    "@mui/icons-material": "^5.10.2",
+    "@mui/material": "^5.10.2",
+    "@types/react": "^18.0.17",
+    "axios": "^0.21.1",
+    "eslint-config-react-app": "^7.0.1",
+    "immutable": "^4.1.0",
+    "litegraph.js": "file:packages/litegraph.js-0.7.10-20220713.tgz",
+    "simple-peer": "^9.11.1",
+    "three": "^0.130.1"
+  },
+  "sandbox": false
+}
