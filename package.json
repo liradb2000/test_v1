@@ -1,8 +1,8 @@
 {
-  "name": "@NEXIVIL/test-extension",
+  "name": "@NEXIVIL/neostack",
   "version": "1.0.0",
   "description": "> TODO: description",
-  "author": "liradb2000 <liradb2000@live.co.kr>",
+  "author": "hohy <ghgud94@nexivil.com>",
   "homepage": "https://github.com/Nexivil-Inc/Extensions#readme",
   "license": "MIT",
   "main": "build/main.js",
@@ -21,7 +21,8 @@
     "build": "node-scripts build",
     "pack": "node-scripts pack",
     "start": "node-scripts start",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "publish": "node-scripts publish"
   },
   "bugs": {
     "url": "https://github.com/Nexivil-Inc/Extensions/issues"
@@ -45,7 +46,7 @@
     ]
   },
   "dependencies": {
-    "@design-express/node-scripts": "^1.0.0-alpha.906154300",
+    "@design-express/node-scripts": "^1.0.0-alpha.930154500",
     "@mui/icons-material": "^5.10.2",
     "@mui/material": "^5.10.2",
     "@types/react": "^18.0.17",
