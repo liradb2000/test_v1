@@ -12,6 +12,7 @@ export function fetch() {
 }
 
 fetch.title = "fetch";
+fetch.path = "neostack";
 
 fetch.prototype.onExecute = async function () {
   const baseURL = this.getInputData(0);
@@ -22,13 +23,11 @@ fetch.prototype.onExecute = async function () {
   let response = await axios(baseURL, {
     method: method,
     headers: headers,
-    data: body
+    data: body,
   });
 
   this.setOutputData(0, response.data);
-}
-
-
+};
 
 export function LightSensorPosition() {
   this.addInput("data", 0);
@@ -37,6 +36,7 @@ export function LightSensorPosition() {
 }
 
 LightSensorPosition.title = "LightSensorPosition";
+LightSensorPosition.path = "neostack";
 
 LightSensorPosition.prototype.onExecute = function () {
   let mapWidth = 2814;
@@ -44,7 +44,6 @@ LightSensorPosition.prototype.onExecute = function () {
   // console.log("test");
   let data = this.getInputData(0) ?? liteSensorData;
   // let data = liteSensorData;
-
 
   let position = [];
 
@@ -68,6 +67,7 @@ export function loadImage() {
 }
 
 loadImage.title = "loadImage";
+loadImage.path = "neostack";
 
 loadImage.prototype.onExecute = function () {
   let scale = 1000;
@@ -99,6 +99,7 @@ export function makeInstanceMesh() {
 }
 
 makeInstanceMesh.title = "makeInstanceMesh";
+makeInstanceMesh.path = "neostack";
 
 makeInstanceMesh.prototype.onExecute = function () {
   // let scale = 1000;

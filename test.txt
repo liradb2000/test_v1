@@ -1,0 +1,32 @@
+
+> @NEXIVIL/neostack@1.0.0 build
+> node-scripts build
+
+Creating an optimized production build...
+Compiled with warnings.
+
+asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets: 
+  static/media/sensor.546df696..jpg (249 KiB)
+
+webpack performance recommendations: 
+You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+For more info visit https://webpack.js.org/guides/code-splitting/
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+File sizes after gzip:
+
+  19.29 kB  build/main.js
+
+The project was built assuming it is hosted at /pkg/file/NEXIVIL/neostack/build/.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
