@@ -73,7 +73,6 @@ loadImage.prototype.onExecute = function () {
   let scale = 1000;
   let loader = new THREE.TextureLoader();
   let imageMap = loader.load(imagMap);
-  console.log(imagMap);
   imageMap.wrapS = THREE.RepeatWrapping;
   imageMap.wrapT = THREE.RepeatWrapping;
 
@@ -85,50 +84,83 @@ loadImage.prototype.onExecute = function () {
   // sprite.translateX(2814 / 2);
   // sprite.translateZ(2429 / 2);
 
-  console.log(imageMap);
-  console.log(sprite);
   this.setOutputData(0, sprite);
 };
 
-export function makeInstanceMesh() {
-  this.addInput("geometry", 0);
-  this.addInput("material", 0);
-  this.addInput("position", 0); // [[x,y,z], [x,y,z].....]
-  this.addInput("color", 0); // [hexcode,hexcode.......] || hexcode
-  this.addOutput("instanceMesh", 0);
+export function SensorData() {
+  this.addInput("object3Ds", 0);
+  this.addInput("data", 0);
+  this.addOutput("title", 0);
+  this.addOutput("content", 0);
 }
 
-makeInstanceMesh.title = "makeInstanceMesh";
-makeInstanceMesh.path = "neostack";
+SensorData.title = "SensorData";
+SensorData.path = "neostack";
 
-makeInstanceMesh.prototype.onExecute = function () {
-  // let scale = 1000;
-  const geo = this.getInputData(0) ?? new THREE.CircleGeometry(16, 32);
-  const mat =
-    this.getInputData(1) ?? new THREE.MeshBasicMaterial({ color: 0xff9f40 });
-  const position = this.getInputData(2) ?? [];
-  const hexCodes = this.getInputData(3) ?? [mat.color.getHex()];
-  const count = position.length;
+SensorData.prototype.onExecute = function () {
+  let data = this.getInputData(0);
+  let liteSensorData = this.getInputData(1);
 
-  const instancedMesh = new THREE.InstancedMesh(geo, mat, count);
-  instancedMesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);
-  instancedMesh.scale.set(1000, 1000, 1000);
+  if (!data) return;
 
-  const dummy = new THREE.Object3D();
-  const color = new THREE.Color();
+  let filtered = data.filter(
+    (intersection) => intersection.object.userData.name !== "orbitPoint"
+  );
+  let instanceId = filtered[0]?.instanceId ?? -1;
+  if (filtered.length === 2 && instanceId > -1) {
+    // console.log("instanceId", instanceId);
+    let index = 0;
+    loop1: for (let i in liteSensorData) {
+      for (let j in liteSensorData[i]["pn"]) {
+        index += 1;
+        if (instanceId === index - 1) {
+          this.setOutputData(0, `${liteSensorData[i]["pn"][j].serial_number}.json`);
+          this.setOutputData(1, JSON.stringify(liteSensorData[i]["pn"][j]))
+          break loop1;
+        }
+      }
+    }
+  }
+};
 
-  let n = 0;
-  for (let i in position) {
-    dummy.position.set(position[i][0], position[i][1], position[i][2]);
-    dummy.updateMatrix();
-    instancedMesh.setMatrixAt(n, dummy.matrix);
-    instancedMesh.setColorAt(
-      n,
-      color.setHex(hexCodes[i] ? hexCodes[i] : hexCodes[hexCodes.length - 1])
+export function PickBymousemove() {
+  this.pickedObject = null;
+  this.pickedObjectSavedColor = 0;
+  this.threeColor = new THREE.Color();
+  this.instanceId = null;
+  this.addOutput("func", 0);
+}
+
+PickBymousemove.title = "PickBymousemove";
+PickBymousemove.path = "neostack";
+
+PickBymousemove.prototype.onExecute = function () {
+  let that = this;
+
+  function pick(intersectedObjects) {
+    if (that.pickedObject && that.pickedObject.type !== "Sprite") {
+      that.pickedObject.setColorAt(
+        that.instanceId,
+        that.threeColor.setHex(0xff9f40)
+      );
+      that.pickedObject.instanceColor.needsUpdate = true;
+      that.pickedObject = undefined;
+    }
+
+    let sensorObject = intersectedObjects.filter(
+      (d) => d.object.geometry.type === "CircleGeometry"
     );
-    n++;
+    if (sensorObject.length > 0) {
+      that.instanceId = sensorObject[0].instanceId;
+      that.pickedObject = sensorObject[0].object;
+      // that.pickedObjectSavedColor = that.pickedObject.material.color.getHex();
+      that.pickedObject.setColorAt(
+        that.instanceId,
+        that.threeColor.setHex(0xff0000)
+      );
+      that.pickedObject.instanceColor.needsUpdate = true;
+    }
   }
 
-  instancedMesh.instanceMatrix.needsUpdate = true;
-  this.setOutputData(0, instancedMesh);
-};
+  this.setOutputData(0, pick);
+}

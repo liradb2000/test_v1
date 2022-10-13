@@ -1,7 +1,7 @@
 "use strict";
 
 // import LiteGraph from "litegraph.js";
-export { fetch, LightSensorPosition, loadImage, makeInstanceMesh } from "./neostack";
+export { fetch, LightSensorPosition, loadImage, SensorData, PickBymousemove } from "./neostack";
 
 
 // LiteGraph.registerNodeType("neostack/LightSensorPosition",  LightSensorPosition);
