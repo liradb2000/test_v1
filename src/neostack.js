@@ -1,6 +1,5 @@
 import { liteSensorData } from "./nslightdata";
 import * as THREE from "three";
-import imagMap from "./sensor.jpg";
 import axios from "axios";
 
 export function fetch() {
@@ -61,8 +60,7 @@ LightSensorPosition.prototype.onExecute = function () {
 };
 
 export function loadImage() {
-  this.addInput("path", 0);
-  this.addInput("layer", 0);
+  this.addInput("blob", 0);
   this.addOutput("Img", 0);
 }
 
@@ -70,9 +68,13 @@ loadImage.title = "loadImage";
 loadImage.path = "neostack";
 
 loadImage.prototype.onExecute = function () {
+  const ImageBlob = this.getInputData(0);
+  
+  let url = window.URL.createObjectURL(ImageBlob);
   let scale = 1000;
   let loader = new THREE.TextureLoader();
-  let imageMap = loader.load(imagMap);
+  let imageMap = loader.load(url);
+  
   imageMap.wrapS = THREE.RepeatWrapping;
   imageMap.wrapT = THREE.RepeatWrapping;
 
@@ -80,10 +82,7 @@ loadImage.prototype.onExecute = function () {
   sprite.scale.set(2814 * scale, 2429 * scale, 0);
   sprite.translateX(2814 / 2);
   sprite.translateY(2429 / 2);
-  // sprite.scale.set(2814, 0, 2429);
-  // sprite.translateX(2814 / 2);
-  // sprite.translateZ(2429 / 2);
-
+  
   this.setOutputData(0, sprite);
 };
 
