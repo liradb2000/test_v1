@@ -1,0 +1,37 @@
+{
+  "name": "NEXIVIL/neostack",
+  "version": "1.0.0",
+  "rootPath": "build",
+  "files": {
+    "nodes/test.js": "./build/nodes/test.js",
+    "nodes/sub/test.js": "./build/nodes/sub/test.js",
+    "runtime.js": "./build/runtime.js",
+    "static/js/656.7341b45f53.chunk.js": "./build/static/js/656.7341b45f53.chunk.js",
+    "vendor/669.e180bbf6.js": "./build/vendor/669.e180bbf6.js",
+    "static/media/big_image.jpg": "./build/static/media/big_image.7eab8ead09.jpg",
+    "stats.json": "./build/stats.json"
+  },
+  "fileMap": {
+    "289": "build/nodes/sub/test.js",
+    "485": "build/nodes/test.js",
+    "656": "build/static/js/656.7341b45f53.chunk.js",
+    "666": "build/runtime.js",
+    "669": "build/vendor/669.e180bbf6.js"
+  },
+  "entrypoints": [
+    [
+      "nodes/test",
+      [
+        669
+      ],
+      485
+    ],
+    [
+      "nodes/sub/test",
+      [
+        669
+      ],
+      289
+    ]
+  ]
+}

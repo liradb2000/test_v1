@@ -8,18 +8,18 @@ Compiled with warnings.
 asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 This can impact web performance.
 Assets: 
-  static/media/sensor.546df696..jpg (249 KiB)
-
-webpack performance recommendations: 
-You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
-For more info visit https://webpack.js.org/guides/code-splitting/
+  static/media/big_image.7eab8ead09.jpg (2.31 MiB)
 
 Search for the keywords to learn more about each warning.
 To ignore, add // eslint-disable-next-line to the line before.
 
 File sizes after gzip:
 
-  19.29 kB  build/main.js
+  5.37 kB  build\vendor\669.e180bbf6.js
+  866 B    build\runtime.js
+  827 B    build\nodes\sub\test.js
+  581 B    build\nodes\test.js
+  365 B    build\static\js\656.7341b45f53.chunk.js
 
 The project was built assuming it is hosted at /pkg/file/NEXIVIL/neostack/build/.
 You can control this with the homepage field in your package.json.
